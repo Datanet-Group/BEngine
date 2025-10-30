@@ -1,5 +1,6 @@
 ﻿#pragma once
-#include "Engine/Source/Runtime/Core/Public/IGame.h"
+#include "IGame.h"
+#include "Object.h"
 #include <array>
 #include <vector>
 
