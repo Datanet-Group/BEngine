@@ -21,6 +21,7 @@ target_link_libraries(Game
         BApplication
         BRenderer2D
         BCore
+        BFramework
 )
 
 if(WIN32)
