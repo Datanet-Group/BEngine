@@ -507,18 +507,32 @@ void TetrisGame::UpdateLevel() {
  */
 void TetrisGame::Update(const UpdateContext& /*ctx*/) {
     if(gameOver) {
-        if(I->KeyPressed(SDL_SCANCODE_R)) {
+        bool currR = I->KeyPressed(SDL_SCANCODE_R);
+        if(currR && !prevR) {
             Reset();
         }
+        prevR = currR;
         return;
     }
     
-    // Steuerung
-    if(I->KeyPressed(SDL_SCANCODE_LEFT)) Move(-1);
-    if(I->KeyPressed(SDL_SCANCODE_RIGHT)) Move(1);
-    if(I->KeyPressed(SDL_SCANCODE_Z)) Rotate(-1);
-    if(I->KeyPressed(SDL_SCANCODE_X)) Rotate(1);
-    if(I->KeyPressed(SDL_SCANCODE_SPACE)) HardDrop();
+    // Control with edge detection
+    bool currLeft = I->KeyPressed(SDL_SCANCODE_LEFT);
+    bool currRight = I->KeyPressed(SDL_SCANCODE_RIGHT);
+    bool currZ = I->KeyPressed(SDL_SCANCODE_Z);
+    bool currX = I->KeyPressed(SDL_SCANCODE_X);
+    bool currSpace = I->KeyPressed(SDL_SCANCODE_SPACE);
+    
+    if(currLeft && !prevLeft) Move(-1);
+    if(currRight && !prevRight) Move(1);
+    if(currZ && !prevZ) Rotate(-1);
+    if(currX && !prevX) Rotate(1);
+    if(currSpace && !prevSpace) HardDrop();
+    
+    prevLeft = currLeft;
+    prevRight = currRight;
+    prevZ = currZ;
+    prevX = currX;
+    prevSpace = currSpace;
     
     SpeedUp(I->KeyDown(SDL_SCANCODE_DOWN));
     
