@@ -21,13 +21,13 @@ target_link_libraries(Game
         BApplication
         BRenderer2D
         BCore
+        SDL2::SDL2
 )
 
 if(WIN32)
     target_link_libraries(Game
             PRIVATE
             SDL2::SDL2main
-            SDL2::SDL2
     )
 
     set_target_properties(Game PROPERTIES

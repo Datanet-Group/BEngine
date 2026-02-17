@@ -20,7 +20,7 @@ target_link_libraries(${LIB_NAME}
 
 target_compile_definitions(${LIB_NAME}
     PRIVATE
-        BENGINE_RENDERER2D_EXPORTS
+        BENGINE_RENDERER2D_BUILD
     PUBLIC
         $<$<CONFIG:Debug>:BENGINE_DEBUG>
 )
