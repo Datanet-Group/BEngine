@@ -107,7 +107,7 @@ void TetrisGame::Spawn() {
  * @param color The color index of the cell, where 0 represents an empty cell,
  *        and values 1 to 7 correspond to specific Tetris piece colors.
  */
-void TetrisGame::DrawCell(int gx, int gy, int color, int offsetX = -1, int offsetY = -1) {
+void TetrisGame::DrawCell(int gx, int gy, int color, int offsetX, int offsetY) {
     static const uint8_t colors[][3] = {
         {0,0,0},      // leer
         {0,255,255},  // cyan (I)
@@ -207,8 +207,8 @@ void TetrisGame::DrawUI() {
     R->DrawRect(previewX, previewY, CELL*4, CELL*4, 128, 128, 128, 255);
     
     Piece preview = nxt;
-    preview.x = previewX / CELL;
-    preview.y = previewY / CELL;
+    preview.x = 0;
+    preview.y = 0;
 
     // Draw with preview box offset instead of game board offset
     if(preview.type < 0 || static_cast<size_t>(preview.type) >= shapes.size()) return;
@@ -217,9 +217,7 @@ void TetrisGame::DrawUI() {
     for(const auto& [dx,dy] : shape) {
         int x = preview.x + dx;
         int y = preview.y + dy;
-        if(y >= 0) {
-            DrawCell(x, y, preview.type + 1, previewX, previewY);
-        }
+        DrawCell(x, y, preview.type + 1, previewX, previewY);
     }
 }
 
