@@ -11,7 +11,10 @@
 #undef main
 #endif
 
-int SDL_main(int argc, char* argv[]) {
+int main(int argc, char* argv[]) {
+    (void)argc;  // Suppress unused parameter warning
+    (void)argv;  // Suppress unused parameter warning
+    
     AppConfig cfg;
     cfg.title = "Tetris";
     cfg.width = 1920;

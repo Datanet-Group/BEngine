@@ -23,7 +23,7 @@ target_link_libraries(${LIB_NAME}
 
 target_compile_definitions(${LIB_NAME}
     PRIVATE
-        BENGINE_CORE_EXPORTS
+        BENGINE_CORE_BUILD
     PUBLIC
         $<$<CONFIG:Debug>:BENGINE_DEBUG>
 )
