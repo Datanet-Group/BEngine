@@ -19,6 +19,9 @@ private:
     struct Piece { int type=0, rot=0, x=3, y=-2; } cur, nxt;
     float fallTimer=0.f, fallPeriod=0.6f; int score=0, lines=0, level=1; bool gameOver=false;
     std::vector<std::vector<std::array<std::pair<int,int>,4>>> shapes;
+    
+    // Previous key states for edge detection
+    bool prevLeft=false, prevRight=false, prevZ=false, prevX=false, prevSpace=false, prevR=false;
 
     void Reset(); void Spawn(); bool Collides(const Piece&) const; void LockPiece();
     int ClearLines(); void Rotate(int dir); void Move(int dx); void DropOne(); void HardDrop();
