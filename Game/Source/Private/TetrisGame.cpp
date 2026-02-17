@@ -515,7 +515,7 @@ void TetrisGame::Update(const UpdateContext& /*ctx*/) {
         return;
     }
     
-    // Steuerung mit Edge-Detection
+    // Control with edge detection
     bool currLeft = I->KeyPressed(SDL_SCANCODE_LEFT);
     bool currRight = I->KeyPressed(SDL_SCANCODE_RIGHT);
     bool currZ = I->KeyPressed(SDL_SCANCODE_Z);
