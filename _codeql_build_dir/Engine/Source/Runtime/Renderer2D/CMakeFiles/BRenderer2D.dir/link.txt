@@ -1,1 +1,0 @@
-/home/runner/work/BEngine/.codeql-scratch/dbs/cpp/working/autobuild/bin/c++ -fPIC -O3 -DNDEBUG -Wl,--dependency-file=CMakeFiles/BRenderer2D.dir/link.d -shared -Wl,-soname,libBRenderer2D.so -o ../../../../lib/libBRenderer2D.so CMakeFiles/BRenderer2D.dir/Private/Renderer2D.cpp.o  /usr/lib/x86_64-linux-gnu/libSDL2.so
