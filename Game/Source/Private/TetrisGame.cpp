@@ -107,7 +107,7 @@ void TetrisGame::Spawn() {
  * @param color The color index of the cell, where 0 represents an empty cell,
  *        and values 1 to 7 correspond to specific Tetris piece colors.
  */
-void TetrisGame::DrawCell(int gx, int gy, int color) {
+void TetrisGame::DrawCell(int gx, int gy, int color, int offsetX = -1, int offsetY = -1) {
     static const uint8_t colors[][3] = {
         {0,0,0},      // leer
         {0,255,255},  // cyan (I)
@@ -118,12 +118,12 @@ void TetrisGame::DrawCell(int gx, int gy, int color) {
         {255,0,255},  // lila (T)
         {255,0,0}     // rot (Z)
     };
-    
+
     // Zentrieren des Spielfelds
     const int gameWidth = COLS * CELL;
     const int gameHeight = ROWS * CELL;
-    const int offsetX = (1920 - gameWidth) / 2;
-    const int offsetY = (1080 - gameHeight) / 2;
+    if(offsetX == -1) offsetX = (1920 - gameWidth) / 2;
+    if(offsetY == -1) offsetY = (1080 - gameHeight) / 2;
     
     int sx = gx * CELL + offsetX;
     int sy = gy * CELL + offsetY;
@@ -207,12 +207,20 @@ void TetrisGame::DrawUI() {
     R->DrawRect(previewX, previewY, CELL*4, CELL*4, 128, 128, 128, 255);
     
     Piece preview = nxt;
+    preview.x = previewX / CELL;
+    preview.y = previewY / CELL;
 
-    // Korrigierte Position für die Vorschau
-    preview.x = (previewX / CELL) + 1;  // +1 für einen kleinen Abstand vom Rand
-    preview.y = (previewY / CELL) + 1;  // +1 für einen kleinen Abstand vom Rand
+    // Draw with preview box offset instead of game board offset
+    if(preview.type < 0 || static_cast<size_t>(preview.type) >= shapes.size()) return;
 
-    DrawPiece(preview);
+    const auto& shape = shapes[preview.type][preview.rot % shapes[preview.type].size()];
+    for(const auto& [dx,dy] : shape) {
+        int x = preview.x + dx;
+        int y = preview.y + dy;
+        if(y >= 0) {
+            DrawCell(x, y, preview.type + 1, previewX, previewY);
+        }
+    }
 }
 
 /**

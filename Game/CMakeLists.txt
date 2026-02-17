@@ -27,11 +27,11 @@ target_link_libraries(Game
 if(WIN32)
     target_link_libraries(Game
             PRIVATE
-            SDL2::SDL2main
+            SDL2::SDL2
     )
 
     set_target_properties(Game PROPERTIES
-            WIN32_EXECUTABLE TRUE
+            WIN32_EXECUTABLE FALSE
     )
 
     add_custom_command(TARGET Game POST_BUILD

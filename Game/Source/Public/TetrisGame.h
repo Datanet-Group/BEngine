@@ -26,5 +26,5 @@ private:
     void Reset(); void Spawn(); bool Collides(const Piece&) const; void LockPiece();
     int ClearLines(); void Rotate(int dir); void Move(int dx); void DropOne(); void HardDrop();
     void SpeedUp(bool downHeld); void UpdateLevel();
-    void DrawCell(int gx,int gy,int color); void DrawBoard(); void DrawPiece(const Piece&,int alpha=255); void DrawUI();
+    void DrawCell(int gx,int gy,int color, int offsetX = -1, int offsetY = -1); void DrawBoard(); void DrawPiece(const Piece&,int alpha=255); void DrawUI();
 };
